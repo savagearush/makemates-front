@@ -1,9 +1,63 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
+import axios from "axios";
 import "./register.css";
 
 const Register = () => {
+  const [inputs, setInputs] = useState({
+    first_name: "",
+    last_name: "",
+    emailId: "",
+    password: "",
+    cnf_password: "",
+    gender: "",
+    contact_no: "",
+  });
+  // const [err, setErr] = useState("");
+  const API_ENDPOINT = "http://localhost:5000/user/register";
+
+  const doSubmit = async (inputs) => {
+    return await axios.post(API_ENDPOINT, inputs);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (checkAllInputs(inputs)) {
+      
+      // showing alert to user
+      toast.promise(
+        doSubmit(inputs),
+        {
+          loading: "Loading",
+          success: ({ data }) => `${data}`,
+          error: ({ response }) => `${response.data}`,
+        },
+        {
+          success: {
+            duration: 5000,
+          },
+          style: {
+            minWidth: "250px",
+            font: "bold 12px verdana",
+          },
+        }
+      );
+    }
+  };
+
+  // Check if all inputs are given
+  const checkAllInputs = (inputs) => {
+    return true;
+  };
+
+  const handleChange = (e) => {
+    setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
   return (
     <Fragment>
+      <Toaster position="top-right" />
       <div className="main">
         <div className="main__left">
           <div className="main__left__logo">MakeMates</div>
@@ -18,22 +72,34 @@ const Register = () => {
                   }}
                 >
                   <label htmlFor="firstName">First Name </label>
-                  <input type="text" name="firstName" id="firstName" />
+                  <input
+                    type="text"
+                    name="first_name"
+                    id="firstName"
+                    onChange={handleChange}
+                  />
                 </span>
                 <span>
                   <label htmlFor="lastName">Last Name </label>
                   <br />
-                  <input type="text" name="lastName" id="lastName" />
+                  <input
+                    type="text"
+                    name="last_name"
+                    id="lastName"
+                    onChange={handleChange}
+                  />
                 </span>
               </div>
               <div>
                 <label htmlFor="Email">Email ID</label>
                 <br />
                 <input
-                  type="text"
-                  name="email"
+                  type="email"
+                  name="emailId"
                   id="email"
                   style={{ width: "440px" }}
+                  onChange={handleChange}
+                  required={true}
                 />
               </div>
               <div>
@@ -44,6 +110,7 @@ const Register = () => {
                   name="password"
                   id="password"
                   style={{ width: "440px" }}
+                  onChange={handleChange}
                 />
               </div>
               <div>
@@ -51,9 +118,10 @@ const Register = () => {
                 <br />
                 <input
                   type="password"
-                  name="cnfPassword"
+                  name="cnf_password"
                   id="cnfPassword"
                   style={{ width: "440px" }}
+                  onChange={handleChange}
                 />
               </div>
               <div style={{ display: "flex" }}>
@@ -74,6 +142,8 @@ const Register = () => {
                       width: "150px",
                       backgroundColor: "rgba(255, 255, 255, 0.9)",
                     }}
+                    name="gender"
+                    onChange={handleChange}
                   >
                     <option value="male">Male</option>
                     <option value="female">Female</option>
@@ -81,12 +151,22 @@ const Register = () => {
                   </select>
                 </span>
                 <span>
-                  <label htmlFor="mobNumber">Contact No </label>
+                  <label htmlFor="contact_no">Contact No </label>
                   <br />
-                  <input type="text" name="mobNumber" id="mobNumber" />
+                  <input
+                    type="text"
+                    name="contact_no"
+                    id="contact_no"
+                    onChange={handleChange}
+                  />
                 </span>
               </div>
-              <input type="submit" name="Register" id="registerBtn" />
+              <input
+                type="submit"
+                name="Register"
+                id="registerBtn"
+                onClick={handleSubmit}
+              />
             </form>
           </div>
         </div>
