@@ -1,0 +1,115 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&display=swap");
+
+:root {
+  --mainColor: rgba(0, 29, 110, 1);
+}
+
+body {
+  background-color: var(--mainColor);
+}
+.main {
+  display: flex;
+  background-color: rgb(251, 251, 251);
+  border-radius: 10px;
+  width: 70%;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(2px);
+  border-radius: 26px;
+  margin: 30px auto;
+  color: white;
+}
+
+.main__left {
+  padding: 20px 30px;
+}
+
+.main__left__logo {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: bolder;
+  font-size: 60px;
+  line-height: 70px;
+  text-align: left;
+  color: var(--mainColor);
+}
+
+.main__left__text {
+  font-family: "Montserrat";
+  font-size: 25px;
+  width: 350px;
+  padding-bottom: 10px;
+  color: black;
+  box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.25);
+}
+
+.main__left__form {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0px;
+  font-family: "Montserrat";
+  height: 470px;
+  font-size: 16px;
+  color: white;
+  background: url("./form-bg.png");
+  background-size: cover;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+form input {
+  font-family: "Montserrat";
+  font-size: 16px;
+  font-weight: 500;
+  width: 200px;
+  padding: 12px 10px;
+  border: none;
+  border-radius: 20px;
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.form div {
+  margin: 10px 0px;
+}
+
+.form label {
+  margin-left: 15px;
+}
+
+#registerBtn {
+  background: #003b8b;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(2px);
+  border-radius: 26px;
+  margin: 10px auto;
+  color: white;
+}
+
+.main__right {
+  background: url("./futureImg.png");
+  background-size: cover;
+  overflow: visible;
+}
+
+/* Main Right  */
+.main__right__motto {
+  font-family: "Montserrat";
+  font-weight: lighter;
+  font-size: 60px;
+  font-weight: bolder;
+  width: 70%;
+  margin: 20px 30px;
+  color: white;
+}
+
+.footer {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 100;
+  font-size: 1em;
+  text-align: center;
+  margin: 30px auto;
+}
+
+.footer a {
+  color: var(--mainColor);
+}

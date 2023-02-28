@@ -1,0 +1,47 @@
+body {
+  margin: 0px;
+  background-color: aliceblue;
+}
+.navbar {
+  width: 100%;
+  position: sticky;
+  top: 0;
+  overflow-y: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgba(0, 29, 110, 1);
+  height: 60px;
+  z-index: 1;
+  // overflow: hidden;
+  .logo-box {
+    .logo a {
+      font: bold 25px Arial;
+      color: aliceblue;
+      margin-left: 100px;
+      text-decoration: none;
+    }
+  }
+  .searchBox {
+    .search {
+      padding: 10px 20px;
+      width: 30em;
+      border-radius: 20px;
+      border: none;
+      outline: none;
+      background-color: rgba(255, 255, 255, 0.8);
+      font: normal 16px Arial;
+    }
+  }
+  .navMenu {
+    .menuList {
+      display: flex;
+      list-style: none;
+      gap: 40px;
+      margin-right: 50px;
+      a {
+        color: white;
+      }
+    }
+  }
+}
