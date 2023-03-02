@@ -1,9 +1,58 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
+import axios from "axios";
 import "./register.css";
 
 const Login = () => {
+  const [inputs, setInputs] = useState({
+    emailId: "",
+    password: "",
+  });
+
+  const API_ENDPOINT = "http://localhost:5000/user/login";
+
+  const doSubmit = async (inputs) => {
+    return await axios.post(API_ENDPOINT, inputs);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (checkAllInputs(inputs)) {
+      // showing alert to user
+      toast.promise(
+        doSubmit(inputs),
+        {
+          loading: "Loading",
+          success: ({ data }) => `${data}`,
+          error: ({ response }) => `${response.data}`,
+        },
+        {
+          success: {
+            duration: 5000,
+          },
+          style: {
+            minWidth: "250px",
+            font: "bold 12px verdana",
+          },
+        }
+      );
+    }
+  };
+
+  // Check if all inputs are given
+  const checkAllInputs = (inputs) => {
+    // joi validaton will goes here....
+    return true;
+  };
+
+  const handleChange = (e) => {
+    setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
   return (
     <Fragment>
+      <Toaster position="top-right" />
       <div className="main">
         <div className="main__left">
           <div className="main__left__logo">MakeMates</div>
@@ -14,10 +63,11 @@ const Login = () => {
                 <label htmlFor="Email">Email ID</label>
                 <br />
                 <input
-                  type="text"
-                  name="email"
-                  id="email"
+                  type="email"
+                  name="emailId"
+                  id="emailId"
                   style={{ width: "440px" }}
+                  onChange={handleChange}
                 />
               </div>
               <div>
@@ -28,9 +78,15 @@ const Login = () => {
                   name="password"
                   id="password"
                   style={{ width: "440px" }}
+                  onChange={handleChange}
                 />
               </div>
-              <input type="submit" name="Login" id="registerBtn" />
+              <input
+                type="submit"
+                name="Login"
+                id="registerBtn"
+                onClick={handleSubmit}
+              />
             </form>
           </div>
         </div>

@@ -13,9 +13,8 @@ const Register = () => {
     gender: "",
     contact_no: "",
   });
-  // const [err, setErr] = useState("");
-  const API_ENDPOINT = "http://localhost:5000/user/register";
 
+  const API_ENDPOINT = "http://localhost:5000/user/register";
   const doSubmit = async (inputs) => {
     return await axios.post(API_ENDPOINT, inputs);
   };
@@ -24,7 +23,6 @@ const Register = () => {
     e.preventDefault();
 
     if (checkAllInputs(inputs)) {
-      
       // showing alert to user
       toast.promise(
         doSubmit(inputs),
@@ -48,6 +46,7 @@ const Register = () => {
 
   // Check if all inputs are given
   const checkAllInputs = (inputs) => {
+    // joi validaton will goes here....
     return true;
   };
 
